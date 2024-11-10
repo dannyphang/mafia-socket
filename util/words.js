@@ -53,45 +53,45 @@ const words = [
 
 function createGame() {
   return new Promise(function (resolve, reject) {
-    var cardIndex = [];
-    var cards = [];
-    var cardsfinal = [];
-    for (var i = 0; i < 25; i++) {
-      var singleIndex = getRandomInt(words.length);
+    // var cardIndex = [];
+    // var cards = [];
+    // var cardsfinal = [];
+    // for (var i = 0; i < 25; i++) {
+    //   var singleIndex = getRandomInt(words.length);
 
-      while (cardIndex.includes(singleIndex)) {
-        singleIndex = getRandomInt(words.length);
-      }
+    //   while (cardIndex.includes(singleIndex)) {
+    //     singleIndex = getRandomInt(words.length);
+    //   }
 
-      cardIndex.push(singleIndex);
-      cards.push({
-        word: words[singleIndex],
-        color: "neutral",
-        selected: false,
-      });
-    }
+    //   cardIndex.push(singleIndex);
+    //   cards.push({
+    //     word: words[singleIndex],
+    //     color: "neutral",
+    //     selected: false,
+    //   });
+    // }
 
-    for (var red = 0; red < 9; red++) {
-      var singleIndex = getRandomInt(cards.length);
+    // for (var red = 0; red < 9; red++) {
+    //   var singleIndex = getRandomInt(cards.length);
 
-      cards[singleIndex].color = "red";
-      cardsfinal.push(cards[singleIndex]);
-      cards.splice(singleIndex, 1);
-    }
+    //   cards[singleIndex].color = "red";
+    //   cardsfinal.push(cards[singleIndex]);
+    //   cards.splice(singleIndex, 1);
+    // }
 
-    for (var blue = 0; blue < 8; blue++) {
-      var singleIndex = getRandomInt(cards.length);
+    // for (var blue = 0; blue < 8; blue++) {
+    //   var singleIndex = getRandomInt(cards.length);
 
-      cards[singleIndex].color = "blue";
-      cardsfinal.push(cards[singleIndex]);
-      cards.splice(singleIndex, 1);
-    }
+    //   cards[singleIndex].color = "blue";
+    //   cardsfinal.push(cards[singleIndex]);
+    //   cards.splice(singleIndex, 1);
+    // }
 
-    var bombIndex = getRandomInt(cards.length);
-    cards[bombIndex].color = "black";
+    // var bombIndex = getRandomInt(cards.length);
+    // cards[bombIndex].color = "black";
 
-    var final = cards.concat(cardsfinal);
-    final = shuffle(final);
+    // var final = cards.concat(cardsfinal);
+    // final = shuffle(final);
 
     resolve(final);
   });

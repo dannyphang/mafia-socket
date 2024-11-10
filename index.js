@@ -14,6 +14,7 @@ const io = new socketIo.Server(server, {
 });
 
 import characterRouter from "./util/character.js";
+import roomRouter from "./util/room.js";
 import WORDS from "./util/words.js";
 
 io.on("connection", (socket) => {
@@ -26,14 +27,14 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("gameUpdate", ({ gameId, words }) => {
-    io.to(gameId).emit(gameId, words);
+  socket.on("roomUpdate", ({ roomId, room }) => {
+    io.to(roomId).emit(roomId, room);
   });
 
-  socket.on("joinGame", ({ gameId }) => {
-    socket.join(gameId);
-    console.log("a player joined the room " + gameId);
-    socket.to(gameId).emit("joinGame", "A player joined the game!");
+  socket.on("joinRoom", ({ roomId }) => {
+    socket.join(roomId);
+    console.log("a player joined the room " + roomId);
+    socket.to(roomId).emit("joinRoom", "A player joined the game!");
   });
 });
 
@@ -54,5 +55,6 @@ app.all("/*", function (req, res, next) {
 app.use(cors());
 
 app.use("/character", characterRouter);
+app.use("/room", roomRouter);
 
 server.listen(PORT, () => console.log("Server is running on port " + PORT));
