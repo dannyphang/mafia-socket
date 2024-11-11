@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     let newRef = db.default.db.collection(roomCollectionName).doc();
     let room = {
       roomId: newRef.id,
-      statusid: 1,
+      statusId: 1,
       playerList: [],
       gameStarted: true,
     };
@@ -31,6 +31,18 @@ router.post("/", async (req, res) => {
       })
     );
   }
+});
+
+// get room by id
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const snapshot = await db.default.db.collection(roomCollectionName).doc(id).get();
+
+    const room = snapshot.data().statusId == 1 ? snapshot.data() : {};
+
+    res.status(200).json(responseModel({ data: room }));
+  } catch (error) {}
 });
 
 export default router;

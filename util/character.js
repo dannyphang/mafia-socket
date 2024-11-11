@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     const list = snapshot.docs.map((doc) => {
       return doc.data();
     });
-    console.log(list);
+
     res.status(200).json(responseModel({ data: list }));
   } catch (error) {
     console.log("error", error);
