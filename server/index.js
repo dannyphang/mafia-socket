@@ -7,45 +7,11 @@ const server = http.createServer(app);
 
 // socket
 import * as socketIo from "socket.io";
-const io = new socketIo.Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
 
 import characterRouter from "./util/character.js";
 import roomRouter from "./util/room.js";
 import playerRouter from "./util/player.js";
 import * as games from "./util/game.js";
-
-// to resolve CORS issue
-app.use(cors());
-
-io.on("connection", (socket) => {
-  console.log("a user connected");
-
-  // socket.on("startGame", ({ gameId }) => {
-  //   console.log(gameId);
-  //   games.createGame().then((game) => {
-  //     io.to(gameId).emit("startGame", game);
-  //     console.log("Someone is starting a game");
-  //   });
-  // });
-
-  socket.on("roomUpdate", ({ roomId, room }) => {
-    io.to(roomId).emit(roomId, room);
-  });
-
-  socket.on("joinRoom", ({ room, player }) => {
-    socket.join(room.roomId);
-    if (player) {
-      games.playerJoinRoom(player, room).then((roomU) => {
-        console.log(`${player.playerName} is joined the room ${roomU.roomId}`);
-        socket.to(roomU.roomId).emit("joinRoom", roomU);
-      });
-    }
-  });
-});
 
 const PORT = process.env.PORT || 3000;
 
@@ -60,8 +26,34 @@ app.all("/*", function (req, res, next) {
   next();
 });
 
+// to resolve CORS issue
+app.use(cors());
+
 app.use("/character", characterRouter);
 app.use("/room", roomRouter);
 app.use("/player", playerRouter);
+
+const io = new socketIo.Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("roomUpdate", ({ roomId, room }) => {
+    io.to(roomId).emit(roomId, room);
+  });
+
+  socket.on("joinRoom", ({ room, player }) => {
+    socket.join(room.roomId);
+    if (player) {
+      games.playerJoinRoom(player, room).then((roomU) => {
+        console.log(`${player.playerName} is joined the room ${roomU.roomId}`);
+        socket.to(roomU.roomId).emit("joinRoom", roomU);
+      });
+    }
+  });
+});
 
 server.listen(PORT, () => console.log("Server is running on port " + PORT));
