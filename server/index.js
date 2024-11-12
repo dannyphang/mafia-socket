@@ -18,6 +18,9 @@ import roomRouter from "./util/room.js";
 import playerRouter from "./util/player.js";
 import * as games from "./util/game.js";
 
+// to resolve CORS issue
+app.use(cors());
+
 io.on("connection", (socket) => {
   console.log("a user connected");
 
@@ -56,9 +59,6 @@ app.all("/*", function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
   next();
 });
-
-// to resolve CORS issue
-app.use(cors());
 
 app.use("/character", characterRouter);
 app.use("/room", roomRouter);
