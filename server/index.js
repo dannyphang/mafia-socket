@@ -36,6 +36,10 @@ app.use("/player", playerRouter);
 const io = new socketIo.Server(server, {
   cors: {
     origin: "*",
+    methods: "POST, GET, PUT, DELETE, OPTIONS",
+    allowedHeaders:
+      "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+    credentials: "true",
   },
 });
 
