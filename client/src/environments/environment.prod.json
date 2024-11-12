@@ -1,4 +1,4 @@
 {
-  "baseUrl": "",
-  "socketEndpoint": ""
+  "baseUrl": "https://mafia-socket-server.vercel.app/",
+  "socketEndpoint": "https://mafia-socket-server.vercel.app/"
 }
