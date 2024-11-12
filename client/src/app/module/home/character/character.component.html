@@ -1,1 +1,27 @@
-<div class="tw-p-[var(--content-gap)]"></div>
+<div
+  class="tw-p-[var(--content-gap)] tw-grid tw-gap-[var(--content-gap)] tw-w-full tw-justify-center tw-justify-items-center"
+>
+  <div
+    *ngFor="let ch of characterList"
+    class="tw-rounded-[var(--border-radius)] tw-p-[var(--content-gap)"
+  >
+    <div class="ch-card">
+      <div class="inner">
+        <div class="front">
+          <img src="../../../../assets/images/werewolf.jpg" class="char-card" />
+        </div>
+        <div class="back">
+          <div class="tw-flex tw-justify-end">
+            {{ ch.characterSide }}
+          </div>
+          <p>
+            {{ ch.characterName }}
+          </p>
+          <p>
+            {{ ch.characterDescription }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

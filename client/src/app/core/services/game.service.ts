@@ -52,6 +52,7 @@ export class RoomDto {
     statusId: number;
     playerList: PlayerDto[];
     gameStarted: boolean;
+    roomOwnerId: string;
 }
 
 export class PlayerDto {
@@ -73,4 +74,5 @@ export class RoomUpdateDto {
     playerList: PlayerDto[];
     gameStarted: boolean;
     updateMessage: string;
+    roomOwnerId: string;
 }

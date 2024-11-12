@@ -28,4 +28,13 @@ function playerJoinRoom(player, room) {
   });
 }
 
-export { createGame, playerJoinRoom };
+function updateRoom(room) {
+  return new Promise(async function (resolve, reject) {
+    let newRef = db.default.db.collection(roomCollectionName).doc(room.roomId);
+    await newRef.update(room);
+
+    resolve(room);
+  });
+}
+
+export { createGame, playerJoinRoom, updateRoom };

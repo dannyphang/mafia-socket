@@ -1,1 +1,20 @@
-<p>game-start-room works!</p>
+<div class="tw-p-[var(--content-gap)] tw-gap-[var(--content-gap)] tw-grid">
+  <div class="tw-flex tw-gap-[var(--content-gap)] tw-flex-wrap">
+    <div *ngFor="let p of room.playerList">
+      <p-button
+        [label]="p.playerName"
+        [outlined]="true"
+        [size]="'large'"
+      ></p-button>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-w-full tw-justify-center">
+    <p-button
+      [label]="'End Game'"
+      (onClick)="endGameBtn()"
+      [iconPos]="'left'"
+      [icon]="'pi pi-arrow-left'"
+    ></p-button>
+  </div>
+</div>

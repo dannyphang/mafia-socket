@@ -36,17 +36,15 @@ app.use("/player", playerRouter);
 const io = new socketIo.Server(server, {
   cors: {
     origin: "*",
-    methods: "POST, GET, PUT, DELETE, OPTIONS",
-    allowedHeaders:
-      "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
-    credentials: "true",
   },
 });
 
 io.on("connection", (socket) => {
   console.log("a user connected");
-  socket.on("roomUpdate", ({ roomId, room }) => {
-    io.to(roomId).emit(roomId, room);
+  socket.on("roomUpdate", ({ room }) => {
+    games.updateRoom(room).then((roomU) => {
+      io.in(roomU.roomId).emit("roomUpdate", roomU);
+    });
   });
 
   socket.on("joinRoom", ({ room, player }) => {
@@ -54,7 +52,7 @@ io.on("connection", (socket) => {
     if (player) {
       games.playerJoinRoom(player, room).then((roomU) => {
         console.log(`${player.playerName} is joined the room ${roomU.roomId}`);
-        socket.to(roomU.roomId).emit("joinRoom", roomU);
+        io.in(roomU.roomId).emit("joinRoom", roomU);
       });
     }
   });

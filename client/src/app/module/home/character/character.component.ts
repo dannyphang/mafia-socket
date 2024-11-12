@@ -23,6 +23,7 @@ export class CharacterComponent extends BaseCoreAbstract {
     this.gameService.getAllCharacter().subscribe(res => {
       if (res.isSuccess) {
         console.log(res.data);
+        this.characterList = res.data
       }
     })
   }

@@ -1,1 +1,34 @@
-<p>waiting-room works!</p>
+<div class="tw-p-[var(--content-gap)] tw-gap-[var(--content-gap)] tw-grid">
+  <div class="tw-flex tw-gap-[var(--content-gap)] tw-flex-wrap">
+    <div *ngFor="let p of room.playerList">
+      <p-button
+        [label]="p.playerName"
+        [outlined]="true"
+        [size]="'large'"
+        (onClick)="userBtn(p)"
+      ></p-button>
+    </div>
+  </div>
+
+  <div class="tw-flex tw-w-full tw-justify-center">
+    <p-button
+      [label]="'Start Game'"
+      (onClick)="gameGameBtn()"
+      [iconPos]="'right'"
+      [icon]="'pi pi-arrow-right'"
+    ></p-button>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="dialogVisible"
+  [position]="'top'"
+  [header]="'Action'"
+  [modal]="true"
+  [draggable]="false"
+>
+  <div class="tw-flex tw-flex-wrap tw-gap-[var(--content-gap)]">
+    <p-button [label]="'Kick'" (onClick)="kickPlayer()"></p-button>
+    <p-button [label]="'Assign to Owner'" (onClick)="assignOwner()"></p-button>
+  </div>
+</p-dialog>

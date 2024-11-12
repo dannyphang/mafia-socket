@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RoomDto } from '../../../../core/services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { SocketioService } from '../../../../core/services/socketIo.service';
@@ -9,7 +9,8 @@ import { SocketioService } from '../../../../core/services/socketIo.service';
   styleUrl: './game-start-room.component.scss'
 })
 export class GameStartRoomComponent {
-  @Output() updateRoom: EventEmitter<RoomDto>;
+  @Input() room: RoomDto = new RoomDto();
+  @Output() updateRoom: EventEmitter<RoomDto> = new EventEmitter<RoomDto>();
 
   constructor(
     private socketIoService: SocketioService,
@@ -20,5 +21,10 @@ export class GameStartRoomComponent {
 
   }
 
-
+  endGameBtn() {
+    this.updateRoom.emit({
+      ...this.room,
+      gameStarted: false
+    })
+  }
 }

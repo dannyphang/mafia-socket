@@ -5,6 +5,7 @@ import { SocketioService } from '../../core/services/socketIo.service';
 import { GameService } from '../../core/services/game.service';
 import { BaseCoreAbstract } from '../../core/shared/base/base-core.abstract';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
