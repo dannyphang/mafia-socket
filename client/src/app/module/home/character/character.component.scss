@@ -1,8 +1,7 @@
 .char-card {
-  //   background-image: url("../../../../assets/images/werewolf.jpg");
   width: 100%;
   aspect-ratio: 920 / 1300;
-  object-fit: fill;
+  object-fit: cover;
   background-size: cover;
   border-radius: var(--border-radius);
 }

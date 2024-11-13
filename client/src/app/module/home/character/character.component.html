@@ -8,15 +8,23 @@
     <div class="ch-card">
       <div class="inner">
         <div class="front">
-          <img src="../../../../assets/images/werewolf.jpg" class="char-card" />
+          <img
+            [src]="'../../../../assets/images/' + ch.code + '.png'"
+            class="char-card"
+          />
         </div>
         <div class="back">
           <div class="tw-flex tw-justify-end">
-            {{ ch.characterSide }}
+            <div
+              class="tw-rounded-full tw-aspect-square tw-border-solid tw-w-[40px] tw-grid tw-justify-center tw-items-center tw-border-yellow-200 tw-outline-offset-[1px] tw-outline-yellow-200 tw-outline"
+            >
+              {{ ch.characterSide }}
+            </div>
           </div>
           <p>
             {{ ch.characterName }}
           </p>
+          <p-divider></p-divider>
           <p>
             {{ ch.characterDescription }}
           </p>

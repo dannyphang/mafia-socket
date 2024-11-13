@@ -45,6 +45,7 @@ export class CharacterDto {
     characterName: string;
     characterSide: '神' | '狼' | '民';
     statusId: number;
+    code: string;
 }
 
 export class RoomDto {
