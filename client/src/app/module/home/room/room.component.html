@@ -3,8 +3,9 @@
 <!-- waiting room -->
 <app-waiting-room
   (updateRoom)="updateRoom($event)"
-  *ngIf="!room.gameStarted"
+  *ngIf="!room.gameStarted && player"
   [room]="room"
+  [characterList]="characterList"
 ></app-waiting-room>
 
 <!-- game start room -->

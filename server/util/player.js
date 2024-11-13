@@ -29,6 +29,27 @@ router.post("/", async (req, res) => {
   }
 });
 
+// update player
+router.put("/", async (req, res) => {
+  try {
+    let player = req.body.player;
+    let newRef = db.default.db
+      .collection(playerCollectionName)
+      .doc(player.playerId);
+    await newRef.update(player);
+
+    res.status(200).json(responseModel({ data: player }));
+  } catch (error) {
+    console.log("error", error);
+    res.status(400).json(
+      responseModel({
+        isSuccess: false,
+        responseMessage: error,
+      })
+    );
+  }
+});
+
 // get player by name
 router.get("/", async (req, res) => {
   try {

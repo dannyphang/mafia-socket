@@ -70,4 +70,8 @@ export class SocketioService {
             });
         });
     }
+
+    disconnectSocket() {
+        this.socket.disconnect();
+    }
 }

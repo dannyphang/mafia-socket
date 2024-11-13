@@ -5,6 +5,9 @@
         [label]="p.playerName"
         [outlined]="true"
         [size]="'large'"
+        [severity]="
+          p.playerId === currentPlayer.playerId ? 'primary' : 'secondary'
+        "
       ></p-button>
     </div>
   </div>

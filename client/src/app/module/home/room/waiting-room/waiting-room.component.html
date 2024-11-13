@@ -6,11 +6,48 @@
         [outlined]="true"
         [size]="'large'"
         (onClick)="userBtn(p)"
+        [severity]="
+          p.playerId === currentPlayer.playerId ? 'primary' : 'secondary'
+        "
       ></p-button>
     </div>
   </div>
 
-  <div class="tw-flex tw-w-full tw-justify-center">
+  <div class="char-div" *ngIf="currentPlayer.playerId === room.roomOwnerId">
+    <div class="char-selection">
+      <app-base-multiselect
+        [label]="'Select Characters'"
+        [options]="characterOptionList"
+        [fieldControl]="characterFormControl"
+        [placeholder]="'Character List'"
+      ></app-base-multiselect>
+    </div>
+
+    <div class="char-card-div">
+      <div
+        *ngFor="let n of characterFormArr.controls; let i = index"
+        class="tw-mb-[var(--content-gap)]"
+      >
+        <app-base-label
+          [label]="returnCharName(n.value.characterId)"
+        ></app-base-label>
+        <p-inputNumber
+          [formControl]="returnCharFormControl(n)"
+          [showButtons]="true"
+          buttonLayout="horizontal"
+          [step]="1"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+          [min]="1"
+        ></p-inputNumber>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="tw-flex tw-w-full tw-justify-center"
+    *ngIf="currentPlayer.playerId === room.roomOwnerId"
+  >
     <p-button
       [label]="'Start Game'"
       (onClick)="gameGameBtn()"

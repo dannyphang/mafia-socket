@@ -51,7 +51,6 @@ io.on("connection", (socket) => {
     socket.join(room.roomId);
     if (player) {
       games.playerJoinRoom(player, room).then((roomU) => {
-        console.log(`${player.playerName} is joined the room ${roomU.roomId}`);
         io.in(roomU.roomId).emit("joinRoom", roomU);
       });
     }
