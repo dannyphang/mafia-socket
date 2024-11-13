@@ -8,6 +8,7 @@
         [severity]="
           p.playerId === currentPlayer.playerId ? 'primary' : 'secondary'
         "
+        (onClick)="userBtn(p)"
       ></p-button>
     </div>
   </div>
@@ -21,3 +22,12 @@
     ></p-button>
   </div>
 </div>
+
+<p-dialog
+  [(visible)]="dialogVisible"
+  [position]="'top'"
+  [header]="'Action'"
+  [modal]="true"
+  [draggable]="false"
+>
+</p-dialog>

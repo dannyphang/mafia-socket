@@ -12,7 +12,6 @@ import { BaseCoreAbstract } from '../../../core/shared/base/base-core.abstract';
 })
 export class RoomComponent extends BaseCoreAbstract implements OnDestroy {
   roomId: string;
-  role = 'operative';
   room: RoomDto = new RoomDto();
   player: PlayerDto = new PlayerDto();
   characterList: CharacterDto[] = [];
@@ -78,7 +77,8 @@ export class RoomComponent extends BaseCoreAbstract implements OnDestroy {
         statusId: 1,
         playerList: roomU.playerList,
         gameStarted: roomU.gameStarted,
-        roomOwnerId: roomU.roomOwnerId
+        roomOwnerId: roomU.roomOwnerId,
+        gameOrder: roomU.gameOrder
       }
 
       this.socketIoService.currentRoom = newRoom;

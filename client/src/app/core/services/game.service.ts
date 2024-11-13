@@ -62,6 +62,7 @@ export class RoomDto {
     playerList: PlayerDto[];
     gameStarted: boolean;
     roomOwnerId: string;
+    gameOrder: number;
 }
 
 export class PlayerDto {
@@ -92,4 +93,5 @@ export class RoomUpdateDto {
     gameStarted: boolean;
     updateMessage: string;
     roomOwnerId: string;
+    gameOrder: number;
 }
